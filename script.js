@@ -1,5 +1,5 @@
 // Product data
-const products = [
+const products = [clearInterval
     {
         id: 1,
         name: "Neon Wave Tee",

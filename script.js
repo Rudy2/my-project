@@ -1,5 +1,5 @@
 // Product data
-const products = [clearInterval
+const products = [
     {
         id: 1,
         name: "Neon Wave Tee",
@@ -10,7 +10,7 @@ const products = [clearInterval
         id: 2,
         name: "Urban Explorer",
         price: 34.99,
-        image: "https://images.unsplash.com/photo-1549887534-4175cb47e7bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        image: "images/urban-explorer.jpg"
     },
     {
         id: 3,
@@ -22,19 +22,37 @@ const products = [clearInterval
         id: 4,
         name: "Retro Gaming",
         price: 32.99,
-        image: "https://images.unsplash.com/photo-1598102132122-542dc73bd0cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        image: "images/retro-gaming.jpg"
     },
     {
         id: 5,
         name: "Nature Lover",
         price: 27.99,
-        image: "https://images.unsplash.com/photo-1593308137131-32de54105ca9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        image: "images/nature-lover.jpg"
     },
     {
         id: 6,
         name: "Abstract Art",
         price: 36.99,
-        image: "https://images.unsplash.com/photo-1605817159951-9e0113d4db52?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        image: "images/abstract-art.jpg"
+    },
+    {
+        id: 7,
+        name: "half MoonCustom Design",
+        price: 39.99,
+        image: "images/images1.jpg"
+    },
+    {
+        id: 8,
+        name: "Fun Symbols Design",
+        price: 39.99,
+        image: "images/images2.jpg"
+    },
+    {
+        id: 9,
+        name: "Girl Power Design",
+        price: 39.99,
+        image: "images/image3.jpg"
     }
 ];
 

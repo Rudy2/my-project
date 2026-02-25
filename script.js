@@ -70,6 +70,11 @@ const cartCount = document.querySelector('.cart-count');
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const contactForm = document.getElementById('contactForm');
+const checkoutBtn = document.getElementById('checkout-btn');
+const checkoutModal = document.getElementById('checkout-modal');
+const closeCheckout = document.querySelector('.close-checkout');
+const deliveryModal = document.getElementById('delivery-modal');
+const closeDelivery = document.querySelector('.close-delivery');
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', () => {
@@ -94,7 +99,112 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Contact form submission
     contactForm.addEventListener('submit', handleContactForm);
+    
+    // Checkout functionality
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', openCheckoutModal);
+    }
+    
+    if (closeCheckout) {
+        closeCheckout.addEventListener('click', closeCheckoutModal);
+    }
+    
+    if (closeDelivery) {
+        closeDelivery.addEventListener('click', closeDeliveryModal);
+    }
+    
+    // Continue shopping button
+    const continueShoppingBtn = document.getElementById('continue-shopping');
+    if (continueShoppingBtn) {
+        continueShoppingBtn.addEventListener('click', closeDeliveryModal);
+    }
+    
+    // Close modals when clicking outside
+    window.addEventListener('click', (e) => {
+        if (checkoutModal && e.target === checkoutModal) {
+            closeCheckoutModal();
+        }
+        if (deliveryModal && e.target === deliveryModal) {
+            closeDeliveryModal();
+        }
+    });
+    
+    // Handle checkout form submission
+    const checkoutForm = document.getElementById('checkout-form');
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', handleCheckout);
+    }
 });
+
+// Open checkout modal
+function openCheckoutModal() {
+    if (cart.length === 0) {
+        showNotification('Your cart is empty!');
+        return;
+    }
+    
+    if (checkoutModal) {
+        checkoutModal.style.display = 'block';
+    }
+}
+
+// Close checkout modal
+function closeCheckoutModal() {
+    if (checkoutModal) {
+        checkoutModal.style.display = 'none';
+    }
+}
+
+// Close delivery modal
+function closeDeliveryModal() {
+    if (deliveryModal) {
+        deliveryModal.style.display = 'none';
+    }
+}
+
+// Handle checkout form submission
+function handleCheckout(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('full-name').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    const zip = document.getElementById('zip-code').value;
+    const phone = document.getElementById('phone').value;
+    
+    // Basic validation
+    if (!name || !email || !address || !city || !zip || !phone) {
+        showNotification('Please fill in all fields!');
+        return;
+    }
+    
+    // Process the order (in a real app, you would send this to a server)
+    processOrder(name, email, address, city, zip);
+}
+
+// Process the order and show delivery confirmation
+function processOrder(name, email, address, city, zip) {
+    // Close checkout modal
+    closeCheckoutModal();
+    
+    // Display delivery confirmation
+    const deliveryAddress = document.getElementById('delivery-address');
+    if (deliveryAddress) {
+        deliveryAddress.textContent = `${address}, ${city}, ${zip}`;
+    }
+    
+    if (deliveryModal) {
+        deliveryModal.style.display = 'block';
+    }
+    
+    // Clear cart
+    cart = [];
+    updateCartCount();
+    renderCartItems();
+}
+
 
 // Render products to the page
 function renderProducts() {
